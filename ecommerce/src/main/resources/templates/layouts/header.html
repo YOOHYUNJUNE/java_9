@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header th:fragment="h" class="p-3 mb-3 text-center bg-dark-subtle">
+	<h1 class="mb-3">친 구하자</h1>
+	
+    <div sec:authorize="isAuthenticated()">반가워요 [[${#authentication.principal.nickname}]]님, 새 친구를 찾아볼까요?</div>
+
+    <!--     
+	<h5 th:text="'권한: ' + ${#authentication.authorities}"></h5>
+     -->
+
+	<button sec:authorize="isAuthenticated()"
+		class="btn btn-secondary btn-lg mt-3"
+		onclick="location.href='/logout'">로그아웃</button>
+
+	<button sec:authorize="!isAuthenticated()"
+		class="btn btn-secondary btn-lg mt-3 me-2" onclick="location.href='/login'">로그인</button>
+    <button sec:authorize="!isAuthenticated()"
+        class="btn btn-secondary btn-lg mt-3" onclick="location.href='/join'">회원가입</button>
+
+</header>
+
+</html>
